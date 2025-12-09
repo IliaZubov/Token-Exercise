@@ -15,7 +15,7 @@ response = client.chat.completions.create(
     model="gpt-4.1", 
     messages=[
         {"role": "system", "content": "You are a helpful AI agent."},
-        {"role": "user", "content": "Could you generate 5 questions to interact with AI assistant based on some random theme on your choice (keep only sentencces without explanations, bulletpoints and numbers?"}
+        {"role": "user", "content": "Could you generate 5 questions to interact with AI assistant based on some random theme on your choice (keep only sentencces without explanations, bulletpoints and numbers)?"}
     ],
     temperature=0.1
 )
