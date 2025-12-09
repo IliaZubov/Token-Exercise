@@ -26,12 +26,12 @@ questions = response.choices[0].message.content.split('\n')
 
 chat_output = []
 
-for qusteion in questions:
+for question in questions:
     response = client.chat.completions.create(
         model="gpt-4.1",
         messages=[
             {"role": "system", "content": "You are an helpful assistant."},
-            {"role": "user", "content": qusteion}
+            {"role": "user", "content": question}
         ],
         temperature=0.1
     )
