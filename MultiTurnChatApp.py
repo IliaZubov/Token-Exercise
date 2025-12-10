@@ -13,7 +13,6 @@ client = AzureOpenAI(
 )
 
 def estimate_cost(tokens_input: int, tokens_output: int):
-    # example logic, adjust as you like
     INPUT_PRICE_PER_M = 1.73
     OUTPUT_PRICE_PER_M = 6.92
 
