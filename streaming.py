@@ -2,7 +2,6 @@ import os
 from openai import AzureOpenAI
 import time
 import tiktoken
-import json
 
 api_key = os.getenv("AZURE_API_KEY")
 api_version = os.getenv("AZURE_API_VERSION")
