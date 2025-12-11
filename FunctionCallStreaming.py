@@ -52,30 +52,32 @@ while True:
     tool_call = None
     input_tokens_used = None
     output_tokens_used = None
-    
-    response = client.responses.create(
-        model="gpt-4.1",
-        input=messages,
-        tools=tools,
-        tool_choice="auto",
-        stream=True
-    )
-    
-    print("\nAssistant: ", end="")
-    
-    for event in response:
-            
-        if event.type == "response.output_text.delta":
-            print(event.delta, end="")
+    try:
+        response = client.responses.create(
+            model="gpt-4.1",
+            input=messages,
+            tools=tools,
+            tool_choice="auto",
+            stream=True
+        )
+        
+        print("\nAssistant: ", end="")
+        
+        for event in response:
+                
+            if event.type == "response.output_text.delta":
+                print(event.delta, end="")
 
-        if event.type == "response.output_item.added":
-            if hasattr(event, "item") and event.item.type == "function_call":
-                tool_call = event.item
+            if event.type == "response.output_item.added":
+                if hasattr(event, "item") and event.item.type == "function_call":
+                    tool_call = event.item
 
-        if event.type == "response.completed":
-            usage = event.response.usage
-            input_tokens_used = usage.input_tokens
-            output_tokens_used = usage.output_tokens
+            if event.type == "response.completed":
+                usage = event.response.usage
+                input_tokens_used = usage.input_tokens
+                output_tokens_used = usage.output_tokens
+    except Exception as e:
+        print("Request failed with error:", e)
             
     print("\n\n---\n")
     
